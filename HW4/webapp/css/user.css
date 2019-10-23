@@ -1,0 +1,36 @@
+.user_profile {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.user_profile .username {
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: x-large;
+}
+
+.user_profile .username a {
+    text-decoration: none;
+}
+
+.user_profile img {
+    position: absolute;
+    width: 7rem;
+    height: 7rem;
+    top: 0.3rem;
+    right: 0.5rem;
+}
+
+.arrows {
+    font-size: xx-large;
+}
+
+.arrows a {
+    text-decoration: none;
+    color: var(--caption-color);
+}
+
+.arrows p {
+    display: inline;
+}

@@ -1,0 +1,23 @@
+.users_table .caption {
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    padding: 0.3rem 0.5rem;
+    background: var(--table-caption-color);
+}
+
+.users_table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.users_table table th, .users_table table td {
+    border: 1px solid var(--border-color);
+    padding: 0.4rem;
+}
+
+.users_table table tbody tr:nth-child(2n-1) {
+    background: var(--odd-table-row);
+}
