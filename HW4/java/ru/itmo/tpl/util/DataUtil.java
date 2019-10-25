@@ -14,7 +14,8 @@ public class DataUtil {
             new User(3, "emusk", "Elon Musk", Color.RED),
             new User(5, "pashka", "Pavel Mavrin", Color.GREEN),
             new User(7, "geranazavr555", "Georgiy Nazarov", Color.RED),
-            new User(11, "cannon147", "Erofey Bashunov", Color.BLUE)
+            new User(11, "cannon147", "Erofey Bashunov", Color.BLUE),
+            new User(121289313, "Darui99", "Egor Kurbatov", Color.RED)
     );
 
     private static final List<Post> POSTS = Arrays.asList(
@@ -26,7 +27,8 @@ public class DataUtil {
                     "\n" +
                     "Штраф за неверную попытку в этом раунде (и последующих Div. 3 раундах) будет равняться 10 минутам.", 1),
             new Post(2, "Hello, world!!!", "Hello, world!!!", 2),
-            new Post(3, "Bye, world!!!", "Bye, world!!!", 2)
+            new Post(3, "Bye, world!!!", "Bye, world!!!", 2),
+            new Post(4, "The best anime", "\"Jojo's Bizarre Adventure\" is the best anime", 121289313)
     );
 
     private static List<Post> getPosts() {

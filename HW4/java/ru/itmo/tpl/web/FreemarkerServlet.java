@@ -38,6 +38,7 @@ public class FreemarkerServlet extends HttpServlet {
         freemarkerConfiguration.setLogTemplateExceptions(false);
         freemarkerConfiguration.setWrapUncheckedExceptions(true);
         freemarkerConfiguration.setFallbackOnNullLoopVariable(false);
+        freemarkerConfiguration.setNumberFormat("computer");
     }
 
 
@@ -47,7 +48,7 @@ public class FreemarkerServlet extends HttpServlet {
 
         request.setCharacterEncoding(StandardCharsets.UTF_8.name());
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-        if ("".equals(request.getRequestURI()) || "/".equals(request.getRequestURI())) {
+        if (request.getRequestURI().matches("[/]*")) {
             response.sendRedirect("/index");
             return;
         }

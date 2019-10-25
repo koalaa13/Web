@@ -80,9 +80,10 @@
         </div>
         <nav>
             <ul>
-                <@underlineMenuItem link="/index" lable="Index"/>
-                <@underlineMenuItem link="/misc/help" lable="Help"/>
-                <@underlineMenuItem link="/users" lable="Users"/>
+                <#assign items={"/index":"Index", "/misc/help":"Help", "/users":"Users"}>
+                <#list items?keys as item>
+                    <@underlineMenuItem link=item lable=items[item]/>
+                </#list>
             </ul>
         </nav>
     </header>
@@ -142,7 +143,8 @@
 
 <#macro userlink user key nameOnly>
     <#if nameOnly==false>
-        <a style="text-decoration: none; color:${user.color}; font-weight: bold; " href="/user?handle=${user.handle}">${user[key]}</a>
+        <a style="text-decoration: none; color:${user.color}; font-weight: bold; "
+           href="/user?handle=${user.handle}">${user[key]}</a>
     <#else>
         <a style="text-decoration: none; font-weight: bold; " href="/user?handle=${user.handle}">${user[key]}</a>
     </#if>
@@ -176,5 +178,5 @@
 </#function>
 
 <#macro noSuch object>
-    <h1>No such ${object}</h1>
+    <h1>No such ${object?html}</h1>
 </#macro>

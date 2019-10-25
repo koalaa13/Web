@@ -3,7 +3,7 @@
 <#import "common.ftl" as c/>
 
 <@c.page>
-    <#if post_id??>
+    <#if post_id?? && post_id?is_number>
         <#assign post=c.findBy(posts "id" post_id)!>
         <#if post.id??>
             <@c.fullPostView post=post small=false/>
