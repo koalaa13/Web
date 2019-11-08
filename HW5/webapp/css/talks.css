@@ -1,0 +1,70 @@
+.talk-box {
+    border: 1px solid var(--border-color);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+}
+
+.talk-box .header {
+    border-bottom: 1px solid var(--border-color);
+    color: var(--caption-color);
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    width: 70%;
+    height: 20rem;
+    resize: none;
+}
+
+.talk-box .body .text-input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.talk-box .error {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.2rem;
+}
+
+.talk-box .recipient-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.talk-box .button-field {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.talk-box .button-field .send-button {
+    width: 10rem;
+}
+
+.talk-box .field {
+    display: flex;
+    justify-content: center;
+}
+
+.talk-box .name {
+    margin-right: 1rem;
+}
+
+.talk-box .text-input-label {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    /*font-weight: bold;*/
+    font-size: large;
+}
