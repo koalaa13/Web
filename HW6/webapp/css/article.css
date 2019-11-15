@@ -1,0 +1,57 @@
+article .title {
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--caption-color);
+}
+
+article .information {
+    color: var(--info-text-color);
+    font-size: 0.9rem;
+}
+
+article .body {
+    border-left: 0.3rem solid #d4d4d4;
+    padding-left: 1rem;
+    word-wrap: break-word;
+}
+
+article .attachment {
+    color: var(--info-text-color);
+    font-size: 0.9rem;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+article .attachment li {
+    background: url("../img/paperclip-16x16.png") no-repeat;
+    padding-left: 25px;
+    padding-bottom: 0.2rem;
+}
+
+article .footer {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.3rem;
+    margin-bottom: 0.7rem;
+}
+
+article .footer .left {
+    display: inline-flex;
+    color: green;
+    font-weight: bold;
+    font-size: larger;
+}
+
+article .footer .positive-score {
+    padding: 0 0.3rem;
+}
+
+article .footer .right {
+    float: right;
+    padding-right: 0.5rem;
+    padding-top: 0.3rem;
+}
+
+article .footer .right img {
+    padding-left: 0.5rem;
+}
