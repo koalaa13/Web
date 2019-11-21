@@ -53,21 +53,19 @@
                         $(".articles tbody").append($tr);
                     });
                     $(".articles .hidden_prop .button").click(function () {
+                        var newValue = $(this).attr("value") === "Show" ? "Hide" : "Show";
                         ajax({
                             data: {
                                 action: "changeHiddenProp",
-                                articleId: $(this).attr("articleId")
+                                articleId: $(this).attr("articleId"),
+                                newValue: newValue === "Show"
                             },
                             success: function (response) {
                                 var hide = response["currentHidProp"];
                                 $(this).attr("articleId", hide);
                             }
                         });
-                        if ($(this).attr("value") === "Show") {
-                            $(this).attr("value", "Hide");
-                        } else {
-                            $(this).attr("value", "Show");
-                        }
+                        $(this).attr("value", newValue);
                         return false;
                     });
                 }

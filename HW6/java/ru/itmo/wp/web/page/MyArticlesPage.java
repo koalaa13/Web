@@ -28,10 +28,12 @@ public class MyArticlesPage {
     private void changeHiddenProp(HttpServletRequest request, Map<String, Object> view) throws ValidationException {
         User user = (User) request.getSession().getAttribute("user");
         long id = Long.parseLong(request.getParameter("articleId"));
+        boolean newValue = Boolean.parseBoolean(request.getParameter("newValue"));
         Article articleToChange = articleService.find(id);
         articleService.validateChangeArticle(user, articleToChange);
-        boolean cur = articleToChange.isHidden();
-        articleService.setHiddenProp(id, !cur);
-        view.put("currentHidProp", !cur);
+        if (articleToChange.isHidden() != newValue) {
+            articleService.setHiddenProp(id, newValue);
+        }
+        view.put("currentHidProp", newValue);
     }
 }

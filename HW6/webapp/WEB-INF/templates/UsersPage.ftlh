@@ -60,21 +60,19 @@
                         $(".users tbody").append($tr);
                     });
                     $(".users .user_admin .button").click(function () {
+                        var newValue = $(this).attr("value") === "Enable" ? "Disable" : "Enable";
                         ajax({
                             data: {
                                 action: "changeAdminProperty",
-                                userToChange: $(this).attr("userToChange")
+                                userToChange: $(this).attr("userToChange"),
+                                newValue: newValue === "Disable"
                             },
                             success: function (response) {
                                 var isAdmin = response["currentAdminProp"];
                                 $(this).attr("userToChange", isAdmin);
                             }
                         });
-                        if ($(this).attr("value") === "Disable") {
-                            $(this).attr("value", "Enable");
-                        } else {
-                            $(this).attr("value", "Disable");
-                        }
+                        $(this).attr("value", newValue);
                         return false;
                     });
                 }

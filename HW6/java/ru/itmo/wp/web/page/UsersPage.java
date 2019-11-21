@@ -30,9 +30,11 @@ public class UsersPage {
         User curUser = (User) request.getSession().getAttribute("user");
         userService.validateChangeAdminProp(curUser);
         long id = Long.parseLong(request.getParameter("userToChange"));
+        boolean newValue = Boolean.parseBoolean(request.getParameter("newValue"));
         User userToChange = userService.find(id);
-        boolean cur = userToChange.isAdmin();
-        userService.setAdmin(id, !cur);
-        view.put("currentAdminProp", !cur);
+        if (userToChange.isAdmin() != newValue) {
+            userService.setAdmin(id, newValue);
+        }
+        view.put("currentAdminProp", newValue);
     }
 }

@@ -1,10 +1,12 @@
 package ru.itmo.wp.web.page;
 
 import com.google.common.base.Strings;
+import ru.itmo.wp.model.domain.Article;
 import ru.itmo.wp.model.service.ArticleService;
 import ru.itmo.wp.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,7 @@ public class IndexPage {
     }
 
     private void findAllArticles(HttpServletRequest request, Map<String, Object> view) {
-        view.put("articles", articleService.findAll().stream().filter(article -> !article.isHidden()).toArray());
+        view.put("articleViews", articleService.findAllArticleViews());
     }
 
     private void userLoginById(HttpServletRequest request, Map<String, Object> view) {

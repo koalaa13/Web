@@ -31,7 +31,6 @@
             There is 0 articles.
         </article>
     </div>
-
     <script>
         $(function () {
             var $noData = $(".articles .noData");
@@ -43,35 +42,17 @@
                     action: "findAllArticles"
                 },
                 success: function (response) {
-
-                    response["articles"].forEach(function (article) {
+                    response["articleViews"].forEach(function (articleView) {
                         $noData.hide();
                         var $article = $($(".articles template").prop("content")).clone();
-                        $article.find(".title").text(article["title"]);
-                        $article.find(".body").text(article["text"]);
-                        ajax({
-                            url: "/index",
-                            async: false,
-                            data: {
-                                action: "userLoginById",
-                                userId: article["userId"]
-                            },
-                            success: function (response) {
-                                $article.find(".information").text("By " + response["creatorLogin"]);
-                            }
-                        });
-                        $article.find(".creationTime").text(article["creationTime"]);
+                        $article.find(".title").text(articleView["title"]);
+                        $article.find(".body").text(articleView["text"]);
+                        $article.find(".creationTime").text(articleView["creationTime"]);
+                        $article.find(".information").text("By " + articleView["login"]);
                         $(".articles").append($article);
                     });
                 }
             });
         })
     </script>
-<#--<script>-->
-<#--    $(function () {-->
-<#--        $("aside section").click(function () {-->
-<#--            $(this).css("background-color", "red");-->
-<#--        });-->
-<#--    })-->
-<#--</script>-->
 </@c.page>

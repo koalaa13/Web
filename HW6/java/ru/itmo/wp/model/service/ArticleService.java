@@ -7,10 +7,59 @@ import ru.itmo.wp.model.exception.ValidationException;
 import ru.itmo.wp.model.repository.ArticleRepository;
 import ru.itmo.wp.model.repository.impl.ArticleRepositoryImpl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ArticleService {
     private final ArticleRepository articleRepository = new ArticleRepositoryImpl();
+    private final UserService userService = new UserService();
+
+    public static class ArticleView {
+        ArticleView(String title, String text, Date creationTime, String login) {
+            this.title = title;
+            this.text = text;
+            this.creationTime = creationTime;
+            this.login = login;
+        }
+
+        private String title;
+        private String text;
+        private Date creationTime;
+        private String login;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public void setCreationTime(Date creationTime) {
+            this.creationTime = creationTime;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public Date getCreationTime() {
+            return creationTime;
+        }
+
+        public String getLogin() {
+            return login;
+        }
+    }
 
     public void validateArticle(String title, String text) throws ValidationException {
         if (Strings.isNullOrEmpty(title)) {
@@ -51,6 +100,17 @@ public class ArticleService {
 
     public List<Article> findAll() {
         return articleRepository.findAll();
+    }
+
+    public List<ArticleView> findAllArticleViews() {
+        List<ArticleView> res = new ArrayList<>();
+        List<Article> articles = articleRepository.findAll();
+        for (Article cur : articles) {
+            if (!cur.isHidden()) {
+                res.add(new ArticleView(cur.getTitle(), cur.getText(), cur.getCreationTime(), userService.find(cur.getUserId()).getLogin()));
+            }
+        }
+        return res;
     }
 
     public Article find(long id) {
