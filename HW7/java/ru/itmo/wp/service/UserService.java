@@ -24,7 +24,9 @@ public class UserService {
     }
 
     public void setDisabled(long id, boolean newValue) {
-        userRepository.updateIsDisabled(id, newValue);
+        User user = findById(id);
+        user.setDisabled(newValue);
+        userRepository.save(user);
     }
 
     public boolean isLoginVacant(String login) {

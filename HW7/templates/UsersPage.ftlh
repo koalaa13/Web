@@ -26,7 +26,7 @@
                 <#list users as user>
                     <tr>
                         <td class="id">${user.id}</td>
-                        <td class="login">${user.login}</td>
+                        <td class="login"><a href="/user/${user.id}">${user.login}</a></td>
                         <td class="creationTime">${user.creationTime}</td>
                         <#if loggedUser??>
                             <td class="disabled">

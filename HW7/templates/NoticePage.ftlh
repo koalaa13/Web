@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="noticeForm" type="ru.itmo.wp.form.NoticeCredentials" -->
+<#-- @ftlvariable name="noticeForm" type="ru.itmo.wp.domain.Notice" -->
 <#import "/spring.ftl" as spring>
 <#import "commons.ftlh" as c>
 
@@ -14,7 +14,7 @@
                             <label for="content">Text</label>
                         </div>
                         <div class="value">
-                            <textarea id="content" name="content"></textarea>
+                            <textarea id="content" name="content">${noticeForm.content!}</textarea>
                         </div>
                     </div>
                     <@c.error "noticeForm.content"/>
