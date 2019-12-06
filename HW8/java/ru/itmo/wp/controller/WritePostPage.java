@@ -27,7 +27,7 @@ public class WritePostPage extends Page {
         this.tagValidator = tagValidator;
     }
 
-    @InitBinder("tags")
+    @InitBinder("inputTags")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(tagValidator);
     }

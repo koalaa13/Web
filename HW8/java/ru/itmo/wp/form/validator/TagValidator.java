@@ -21,8 +21,8 @@ public class TagValidator implements Validator {
             String tags = (String) target;
             List<String> tagsArray = TagHelper.parseTags(tags);
             for (String tag : tagsArray) {
-                if (!tag.matches("[a-zA-Z]+")) {
-                    errors.reject("tags.invalid-tags", "invalid tags");
+                if (tag.length() > 15 || !tag.matches("[a-zA-Z]+")) {
+                    errors.reject("tags.invalid-tags", "tags should be latin letters only");
                 }
             }
         }

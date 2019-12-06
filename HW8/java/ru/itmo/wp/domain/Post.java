@@ -1,16 +1,12 @@
 package ru.itmo.wp.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @noinspection unused
@@ -45,7 +41,8 @@ public class Post {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private Set<Tag> tags;
+    @OrderBy("id desc")
+    private Set<Tag> tags = new HashSet<>();
 
     @CreationTimestamp
     private Date creationTime;
@@ -111,7 +108,7 @@ public class Post {
         getComments().add(comment);
     }
 
-    public void addTag(String tagName) {
-        getTags().add(new Tag(tagName));
+    public void addTag(Tag tag) {
+        getTags().add(tag);
     }
 }

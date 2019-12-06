@@ -28,7 +28,11 @@
         <div class="comments">
             <#list post.comments as comment>
                 <div class="comment">
-                    ${comment.text}
+                    <#if comment.text?length gt 100>
+                        ${comment.text[0..100]}...
+                    <#else>
+                        ${comment.text}
+                    </#if>
                     <div class="information">
                         By ${comment.user.login}
                     </div>

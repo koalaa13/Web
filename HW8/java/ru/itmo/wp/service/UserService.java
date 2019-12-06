@@ -1,30 +1,30 @@
 package ru.itmo.wp.service;
 
 import org.springframework.stereotype.Service;
-import ru.itmo.wp.domain.Comment;
 import ru.itmo.wp.domain.Post;
 import ru.itmo.wp.domain.Role;
+import ru.itmo.wp.domain.Tag;
 import ru.itmo.wp.domain.User;
 import ru.itmo.wp.form.UserCredentials;
 import ru.itmo.wp.repository.CommentRepository;
 import ru.itmo.wp.repository.RoleRepository;
+import ru.itmo.wp.repository.TagRepository;
 import ru.itmo.wp.repository.UserRepository;
 import ru.itmo.wp.utils.TagHelper;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final CommentRepository commentRepository;
+    private final TagRepository tagRepository;
 
     /** @noinspection FieldCanBeLocal, unused */
     private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository, CommentRepository commentRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository, CommentRepository commentRepository, TagRepository tagRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
-        this.commentRepository = commentRepository;
+        this.tagRepository = tagRepository;
 
         this.roleRepository = roleRepository;
         for (Role.Name name : Role.Name.values()) {
@@ -60,11 +60,13 @@ public class UserService {
 
     public void writePost(User user, Post post, String tags) {
         List<String> tagsArray = TagHelper.parseTags(tags);
-        if (post.getTags() == null) {
-            post.setTags(new HashSet<>());
-        }
         for (String tagName : tagsArray) {
-            post.addTag(tagName);
+            Tag tag = tagRepository.findByName(tagName);
+            if (tag == null) {
+                tagRepository.save(new Tag(tagName));
+                tag = tagRepository.findByName(tagName);
+            }
+            post.addTag(tag);
         }
         user.addPost(post);
         userRepository.save(user);
