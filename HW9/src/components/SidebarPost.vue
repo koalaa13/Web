@@ -17,8 +17,8 @@
         props: ['users', 'post'],
         name: "SidebarPost",
         methods: {
-            changePage: function (page, postId) {
-                this.$root.$emit("onChangePage", page, postId);
+            changePage: function (page, id) {
+                this.$root.$emit("onChangePage", page, id);
             }
         }
     }

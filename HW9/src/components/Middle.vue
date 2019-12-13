@@ -2,13 +2,13 @@
     <div class="middle">
         <Sidebar :users="users" :posts="posts"/>
         <main>
-            <Index v-if="page === 'Index'" :users="users" :posts="posts"/>
+            <Index v-if="page === 'Index'" :users="users" :posts="posts" :comments="comments"/>
             <Enter v-if="page === 'Enter'"/>
             <Register v-if="page === 'Register'"/>
             <AddPost v-if="page === 'AddPost'"/>
             <EditPost v-if="page === 'EditPost'"/>
             <Users v-if="page === 'Users'" :users="users"/>
-            <FullPost v-if="page === 'FullPost'" :post="posts[postId]" :users="users" :comments="comments"/>
+            <FullPost v-if="page === 'FullPost'" :post="posts[id]" :users="users" :comments="comments"/>
         </main>
     </div>
 </template>
@@ -29,7 +29,7 @@
         data: function () {
             return {
                 page: "Index",
-                postId: 0
+                id: 0
             }
         },
         components: {
@@ -43,9 +43,9 @@
             Users
         },
         beforeCreate() {
-            this.$root.$on("onChangePage", (page, postId) => {
+            this.$root.$on("onChangePage", (page, id) => {
                 this.page = page;
-                this.postId = postId;
+                this.id = id;
             });
         }
     }

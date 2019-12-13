@@ -18,6 +18,7 @@
             <div class="right">
                 <img src="../../assets/img/date_16x16.png" title="Publish Time" alt="Publish Time"/>
                 <img src="../../assets/img/comments_16x16.png" title="Comments" alt="Comments"/>
+                <a href="#">{{this.commentCount}}</a>
             </div>
         </div>
     </article>
@@ -26,10 +27,15 @@
 <script>
     export default {
         name: "Post",
-        props: ['post', 'users'],
+        props: ['post', 'users', 'comments'],
         methods: {
-            changePage: function (page, postId) {
-                this.$root.$emit("onChangePage", page, postId);
+            changePage: function (page, id) {
+                this.$root.$emit("onChangePage", page, id);
+            }
+        },
+        computed: {
+            commentCount: function () {
+                return Object.values(this.comments).filter(comment => comment.postId === this.post.id).length;
             }
         }
     }

@@ -56,8 +56,10 @@
                 }
             });
             this.$root.$on("onRegister", (login, name) => {
-                if (!login || login.length < 3 || login.length > 16 || Object.values(this.users).filter(u => u.login === login).length !== 0) {
+                if (!login || login.length < 3 || login.length > 16) {
                     this.$root.$emit("onRegisterValidationError", "Login is invalid");
+                } else if (Object.values(this.users).filter(u => u.login === login).length !== 0) {
+                    this.$root.$emit("onRegisterValidationError", "Login is already in use");
                 } else if (!name || name.length < 1 || name.length > 32) {
                     this.$root.$emit("onRegisterValidationError", "Name is invalid");
                 } else {

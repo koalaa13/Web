@@ -1,6 +1,6 @@
 <template>
     <div class="comments">
-        <Post :post="post" :users="users"/>
+        <Post :post="post" :users="users" :comments="comments"/>
         <div class="comment" v-for="comment in getComments(post)" :key="comment.id">
             {{comment.text}}
             <div class="information">
